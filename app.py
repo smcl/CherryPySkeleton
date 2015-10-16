@@ -1,5 +1,7 @@
 import cherrypy
 from cherrypy.lib import static
+from datetime import datetime
+import json
 import os
 import sys
 import sqlite3
@@ -25,8 +27,11 @@ class AppSkeleton:
 		return self.dynamic("about.mako")
 
 	@cherrypy.expose
-	def ajax(self, **args):
-		return "test"
+	def datetime(self, **args):
+		return json.dumps({
+			"utcnow" : str(datetime.utcnow()),
+			"now" : str(datetime.now())
+		})
 
 	@cherrypy.expose
 	def static(self,filename):
