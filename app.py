@@ -2,16 +2,23 @@ import cherrypy
 from cherrypy.lib import static
 import os
 import sys
+import sqlite3
 from mako.template import Template
 from mako.lookup import TemplateLookup
 
 class AppSkeleton:
 	def __init__(self, filenames):
 		self.AppName = "AppSkeleton"
+		
 
 	@cherrypy.expose
 	def index(self, **args):
-		return self.dynamic("index.mako")
+		db = self.initDB()
+		cur = db.cursor()    
+		cur.execute('SELECT * from Widgets')
+		widgets = cur.fetchall()
+
+		return self.dynamic("index.mako", model=widgets)
 
 	@cherrypy.expose
 	def about(self, **args):
@@ -35,6 +42,21 @@ class AppSkeleton:
 			body.render_unicode(app=self, model=model), 
 			footer.render_unicode(app=self, model=model),
 		])
+
+	def initDB(self, create=False):
+		appDB = os.path.join(current_dir, "db", "app.db")
+		appSQL = os.path.join(current_dir, "db", "app.sql")
+
+		if not os.path.isfile(appDB):
+			# ./db/app.db doesn't exist, initialise from ./db/app.sql
+			# note: this is nasty
+			os.system("sqlite3 {0} < {1}".format(appDB, appSQL))
+
+		try:
+			return sqlite3.connect(appDB)
+		except:
+			return None
+
 
 def blank_error_page():
     cherrypy.response.status = 500
