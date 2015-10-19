@@ -6,7 +6,7 @@
 		This is the main page of a very simple site.
 	</p>
 	<p>
-		Here are some widgets loaded from the DB:
+		Here are some widgets loaded from an sqlite3 DB:
 		<ul>
 			% for widget in model:
 				<li> 

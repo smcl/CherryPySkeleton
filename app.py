@@ -12,7 +12,6 @@ class AppSkeleton:
 	def __init__(self, filenames):
 		self.AppName = "AppSkeleton"
 		
-
 	@cherrypy.expose
 	def index(self, **args):
 		db = self.initDB()

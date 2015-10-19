@@ -13,6 +13,16 @@ There are two simple pages served currently:
 * /about
 
 and there is one service:
-* /datetime (returns json with current Czech date and time and UTC time)
+* /datetime (returns json with current local date and time and UTC time)
 
-There's nothing fancy or revolutionary here, it's mostly just to allow me to quickly dive into putting together little webapps for personal use without fussing around with all the BS boilerplate. Everything is extremely simple, since theres only two simple pages even for beginners to spot how to hook things up and what comes from where. Let me know if you need a hand, I'm not a web developer by trade but I know enough :)
+There's nothing fancy or revolutionary here, this just exists for when you don't care about the details and just want all the boring boilerplate sorted out.
+
+## Usage
+
+Ensure you have the modules `cherrypy`, `sqlite3` and `mako`, then:
+
+    $ git clone https://github.com/smcl/CherryPySkeleton.git
+    $ cd CherryPySkeleton
+    $ python app.py # or python app.py <port>
+
+You can see an example of this site running on http://skeleton.mclemon.io
