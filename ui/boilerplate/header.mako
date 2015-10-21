@@ -19,11 +19,8 @@
 		<div class="container">
 
 	    <nav class="navbar navbar navbar-static-top">
-	      <a class="navbar-brand" href="#">${app.AppName}</a>
+	      <a class="navbar-brand" href="/">${app.AppName}</a>
 	      <ul class="nav navbar-nav">
-	        <li class="nav-item">
-	          <a class="nav-link" href="/">Index<span class="sr-only">(current)</span></a>
-	        </li>
 	        <li class="nav-item">
 	          <a class="nav-link" href="/about">About</a>
 	        </li>
